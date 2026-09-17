@@ -1,37 +1,35 @@
 {
-    {
-        "feedURL":"https://bsky.app/profile/hankgreen.bsky.social/rss",
-        "type":"bluesky",
-        "features": [
-            "link",
-            "description",
-            "pubDate",
-            "guid"
-        ],
-        "encoding":"plaintext"
-    },
-    {
-        "feedURL":"https://keith-baker.com/feed",
-        "type":"wordpress",
-        "features": [
-            "title",
-            "description",
-            "comments",
-            "pubDate",
-            "guid"
-        ],
-        "encoding":"xml"
-    },
-    {
-        "feedURL":"https://staff.tumblr.com/rss",
-        "type":"tumblr",
-        "features":[
-            "title",
-            "description",
-            "link",
-            "pubDate",
-            "guid"
-        ],
-        "encoding":"html"
-    }
+    "feedURL":"https://bsky.app/profile/hankgreen.bsky.social/rss",
+    "type":"bluesky",
+    "features": [
+        "link",
+        "description",
+        "pubDate",
+        "guid"
+    ],
+    "encoding":"plaintext"
+},
+{
+    "feedURL":"https://keith-baker.com/feed",
+    "type":"wordpress",
+    "features": [
+        "title",
+        "description",
+        "comments",
+        "pubDate",
+        "guid"
+    ],
+    "encoding":"xml"
+},
+{
+    "feedURL":"https://staff.tumblr.com/rss",
+    "type":"tumblr",
+    "features":[
+        "title",
+        "description",
+        "link",
+        "pubDate",
+        "guid"
+    ],
+    "encoding":"html"
 }
