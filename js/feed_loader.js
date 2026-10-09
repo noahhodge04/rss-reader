@@ -29,24 +29,31 @@ class FeedLoader {
   }
 
   extractFeedItems(doc){
-    posts = [];
+    let posts = [];
     items = doc.getElementsByTagName("item");
     // TODO: process items into a more usable object
     for(item of items){
       posts.append(
         {
-          title: item.getElementsByTagName("title")[0].innerHTML,
-          description: item.getElementsByTagName("description")[0].innerHTML,
-          pubDate: new Date(item.getElementsByTagName("pubDate")[0].innerHTML)
+          title: item.getElementsByTagName("title").item(0).innerHTML,
+          description: item.getElementsByTagName("description").item(0).innerHTML,
+          pubDate: new Date(item.getElementsByTagName("pubDate").item(0).innerHTML),
+          link: item.getElementsByTagName("link").item(0).innerHTML
         }
       )
     }
     return posts;
   }
 
-  async getFeedContentsFromStorage(){
-    for(feed in localStorage.getItem("entries")){
-      // TODO: retrieve feed, extract items, and possibly do some other processing
+  async getPostsFromStorage(){
+    let posts = []
+    console.log(localStorage.getItem("entries"));
+    const storedFeeds = await localStorage.getItem("entries");
+    for(const feed of storedFeeds){
+      doc = await this.#retrieveFeed(feed.source);
+      await doc;
+      posts.push(...this.extractFeedItems(doc));
     }
+    return posts
   }
 }
