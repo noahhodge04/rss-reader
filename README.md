@@ -10,10 +10,10 @@ This RSS reader is in theory very simple. To add a feed, you input the link to t
 - Keith Baker's blog
 - Hank Green's BlueSky page  
 
-The program retrieves these RSS feeds, extracts essential information to identify the feed later (name, description, the source URL, and the feed URL), and stores it as an object on the user's computer using JavaScript's `LocalStorage` feature.
+The program retrieves these RSS feeds, extracts essential information to identify the feed later (name, description, the source URL, and the feed URL), and stores it as an object on the user's computer using JavaScript's `localStorage` feature.
 
 ### Retrieval
-When the main page is loaded, the system looks at `LocalStorage` and extracts the feeds from it. The source URL of the feeds is then accessed, and all of the posts (described with the XML `item` tag) are taken, processed into simpler objects, passed to an array, sorted by date, and displayed.  
+When the main page is loaded, the system looks at `localStorage` and extracts the feeds from it. The source URL of the feeds is then accessed, and all of the posts (described with the XML `item` tag) are taken, processed into simpler objects, passed to an array, sorted by date, and displayed.  
 
 The present issue is with accessing the `post` objects to process for display.
 
@@ -23,4 +23,4 @@ Due to CORS policies not allowing frontend scripts to access other links on the 
 2. Open the folder in VSCode
 3. Right click `index.html` and select the "Open in Integrated Browser" option  
 
-Nothing will display for now, as there are some errors with retrieval that need addressed. However, in the console you should be able to find some of the debug stuff I've written, including what has been stored
+What will appear are the summaries of the feeds, as well as 50 or so "posts" that actually have no data. Something is wrong with the extracted posts being passed to the display script.

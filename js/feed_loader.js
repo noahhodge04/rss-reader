@@ -28,17 +28,32 @@ class FeedLoader {
     return doc;
   }
 
+  async displayFeeds(){
+    const destination = document.getElementById("feed-div")
+    const feeds = JSON.parse(localStorage.getItem("entries"));
+    for(const feed of feeds){
+      destination.innerHTML += `
+      <div class='feed'>
+        <h2>${feed.title}</h2>
+          <p>
+            ${feed.description} </br>
+            <a href="${feed.link}">Source</a>
+          </p>
+        </div>`;
+    }
+  }
+
   extractFeedItems(doc){
     let posts = [];
-    items = doc.getElementsByTagName("item");
+    const items = doc.getElementsByTagName("item");
     // TODO: process items into a more usable object
-    for(item of items){
-      posts.append(
+    for(const item of items){
+      posts.push(
         {
-          title: item.getElementsByTagName("title").item(0).innerHTML,
-          description: item.getElementsByTagName("description").item(0).innerHTML,
-          pubDate: new Date(item.getElementsByTagName("pubDate").item(0).innerHTML),
-          link: item.getElementsByTagName("link").item(0).innerHTML
+          title: item.getElementsByTagName("title").item(0),
+          description: item.getElementsByTagName("description").item(0),
+          pubDate: new Date(item.getElementsByTagName("pubDate").item(0)),
+          link: item.getElementsByTagName("link").item(0)
         }
       )
     }
@@ -48,11 +63,13 @@ class FeedLoader {
   async getPostsFromStorage(){
     let posts = []
     console.log(localStorage.getItem("entries"));
-    const storedFeeds = await localStorage.getItem("entries");
+    const storedFeeds =  JSON.parse(localStorage.getItem("entries"));
     for(const feed of storedFeeds){
-      doc = await this.#retrieveFeed(feed.source);
-      await doc;
+      const doc = await this.#retrieveFeed(feed.source);
       posts.push(...this.extractFeedItems(doc));
+    }
+    for(const post of posts){
+      console.log(post);
     }
     return posts
   }
