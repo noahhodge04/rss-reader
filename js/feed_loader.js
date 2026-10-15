@@ -52,7 +52,7 @@ class FeedLoader {
         {
           title: item.getElementsByTagName("title").item(0),
           description: item.getElementsByTagName("description").item(0),
-          pubDate: new Date(item.getElementsByTagName("pubDate").item(0)),
+          // pubDate: new Date(item.getElementsByTagName("pubDate").item(0)),
           link: item.getElementsByTagName("link").item(0)
         }
       )
@@ -68,9 +68,7 @@ class FeedLoader {
       const doc = await this.#retrieveFeed(feed.source);
       posts.push(...this.extractFeedItems(doc));
     }
-    for(const post of posts){
-      console.log(post);
-    }
+    console.log(posts);
     return posts
   }
 }

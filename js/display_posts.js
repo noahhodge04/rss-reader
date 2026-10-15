@@ -1,12 +1,12 @@
 async function displayPosts(){
   const destination = document.getElementById("feed-div");
   const posts = await feed_loader.getPostsFromStorage();
-  for(const post in posts){
+  for(const post of posts){
     console.log(post);
     destination.innerHTML += `
     <div class = 'post'>
-      <h4>${post.title}</h4>
-      <p>${post.description}</p>
+      <h4><a href=${post.link.innerHTML}>${post.title.innerHTML}</a></h4>
+      <p>${post.description.innerHTML}</p>
     </div>
     `
     
